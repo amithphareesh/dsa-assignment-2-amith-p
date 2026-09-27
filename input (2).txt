@@ -1,0 +1,22 @@
+ISBN Keys (Insertion Order):
+45, 20, 60, 10, 30, 50, 70, 25, 55
+
+Total Number of Keys: 9
+
+Search Keys:
+25
+55
+90
+
+BST Construction Order:
+Step 1: Insert 45 as root
+Step 2: Insert 20 -> left of 45
+Step 3: Insert 60 -> right of 45
+Step 4: Insert 10 -> left of 20
+Step 5: Insert 30 -> right of 20
+Step 6: Insert 50 -> left of 60
+Step 7: Insert 70 -> right of 60
+Step 8: Insert 25 -> left of 30
+Step 9: Insert 55 -> right of 50
+
+Student: Amith P Hareesh

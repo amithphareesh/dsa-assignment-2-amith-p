@@ -1,0 +1,33 @@
+Comparison Table: BST Search vs Linear Search
+===========================================
+Student: Amith P Hareesh
+
+Dataset: ISBN Keys = [45, 20, 60, 10, 30, 50, 70, 25, 55] (n=9)
+Search Keys: 25, 55, 90
+
+-----------------------------------------------------------------
+Key | BST Result | BST Comp | Linear Result | Linear Comp | Better
+-----------------------------------------------------------------
+25  | Found      | 4        | Found         | 8           | BST
+55  | Found      | 4        | Found         | 9           | BST
+90  | Not Found  | 3        | Not Found     | 9           | BST
+-----------------------------------------------------------------
+
+Detailed Search Path:
+
+1. Searching for 25:
+   - BST Path: 45 -> 20 -> 30 -> 25 (Found) = 4 comparisons
+   - Linear Path: 45,20,60,10,30,50,70,25 = 8 comparisons
+
+2. Searching for 55:
+   - BST Path: 45 -> 60 -> 50 -> 55 (Found) = 4 comparisons
+   - Linear Path: 45,20,60,10,30,50,70,25,55 = 9 comparisons
+
+3. Searching for 90:
+   - BST Path: 45 -> 60 -> 70 -> NULL (Not Found) = 3 comparisons
+   - Linear Path: All 9 elements checked = 9 comparisons (Not Found)
+
+Summary:
+- BST total comparisons: 11
+- Linear total comparisons: 26
+- BST is ~2.36x more efficient

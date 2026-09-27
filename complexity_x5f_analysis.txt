@@ -1,0 +1,40 @@
+Complexity Analysis - BST and Linear Search
+===========================================
+Student: Amith P Hareesh
+
+1. BST SEARCH
+-------------
+Time Complexity:
+- Best Case: O(1)
+  Occurs when the key to be searched is at the root node (e.g., 45 in this case).
+
+- Average Case: O(log n)
+  For a balanced BST with n nodes, height h = log2(n). Search takes O(h) time.
+  For n=9, average comparisons ~ log2(9) ≈ 3-4, which matches our results.
+
+- Worst Case: O(n)
+  Occurs when BST is skewed (all nodes in one side).
+  Tree becomes like a linked list, height = n.
+
+Space Complexity:
+- O(n) to store n nodes
+- O(h) auxiliary space for recursion stack
+- For our tree: h = 4 levels
+
+2. LINEAR SEARCH
+----------------
+Time Complexity:
+- Best Case: O(1) - Key at first position
+- Average Case: O(n)
+- Worst Case: O(n) - Key at last or not present
+
+Space Complexity:
+- O(1) additional space
+
+3. COMPARISON FOR GIVEN DATASET (n=9)
+--------------------------------------
+Key 25: BST = 4, Linear = 8
+Key 55: BST = 4, Linear = 9
+Key 90: BST = 3, Linear = 9
+
+BST is more efficient due to height = 3 (balanced).

@@ -1,0 +1,21 @@
+Conclusion
+==========
+Student: Amith P Hareesh
+Assignment 2 - Question 2: BST and Linear Search
+
+For the given dataset of ISBN keys [45, 20, 60, 10, 30, 50, 70, 25, 55]:
+
+1. BST Search required fewer comparisons than Linear Search for all three tested keys.
+   - Key 25: BST 4 vs Linear 8
+   - Key 55: BST 4 vs Linear 9
+   - Key 90: BST 3 vs Linear 9
+
+2. Therefore, BST Search is preferable for the given dataset.
+
+3. However, BST performance depends on shape and height:
+   - Balanced BST provides O(log n) average search time
+   - Skewed BST can have O(n) worst-case time
+
+4. Final Verdict: BST Search is more efficient than Linear Search for this scenario.
+
+Subject: Data Structures and Algorithms

@@ -1,0 +1,151 @@
+/*
+ * DSA Assignment 2 - Question 2
+ * Topic: Binary Search Tree (BST) and Linear Search
+ * Student: Amith P Hareesh
+ * 
+ * Problem: Online bookstore ISBN keys: 45, 20, 60, 10, 30, 50, 70, 25, 55
+ * BST constructed by inserting keys in given order.
+ * Perform traversals, BST Search and Linear Search for keys 25, 55, 90
+ * and compare number of comparisons.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// BST Node structure
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// Create new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+// Insert into BST
+struct Node* insert(struct Node* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } else if (data > root->data) {
+        root->right = insert(root->right, data);
+    }
+    return root;
+}
+
+// Inorder traversal: Left -> Root -> Right
+void inorder(struct Node* root) {
+    if (root != NULL) {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+// Preorder traversal: Root -> Left -> Right
+void preorder(struct Node* root) {
+    if (root != NULL) {
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+// Postorder traversal: Left -> Right -> Root
+void postorder(struct Node* root) {
+    if (root != NULL) {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+// BST Search with comparison count
+int bstSearch(struct Node* root, int key, int *comparisons) {
+    *comparisons = 0;
+    struct Node* current = root;
+    while (current != NULL) {
+        (*comparisons)++;
+        if (key == current->data) {
+            return 1; // Found
+        } else if (key < current->data) {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
+    }
+    return 0; // Not Found
+}
+
+// Linear Search with comparison count
+int linearSearch(int arr[], int n, int key, int *comparisons) {
+    *comparisons = 0;
+    for (int i = 0; i < n; i++) {
+        (*comparisons)++;
+        if (arr[i] == key) {
+            return 1; // Found
+        }
+    }
+    return 0; // Not Found
+}
+
+int main() {
+    int keys[] = {45, 20, 60, 10, 30, 50, 70, 25, 55};
+    int n = sizeof(keys) / sizeof(keys[0]);
+    int searchKeys[] = {25, 55, 90};
+    int searchCount = 3;
+
+    struct Node* root = NULL;
+
+    // Construct BST
+    printf("Inserting keys: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", keys[i]);
+        root = insert(root, keys[i]);
+    }
+    printf("\n\n");
+
+    // Traversals
+    printf("Inorder Traversal (Sorted Order): ");
+    inorder(root);
+    printf("\n");
+
+    printf("Preorder Traversal: ");
+    preorder(root);
+    printf("\n");
+
+    printf("Postorder Traversal: ");
+    postorder(root);
+    printf("\n\n");
+
+    // Search Comparison
+    printf("Search Results:\n");
+    printf("------------------------------------------------------------\n");
+    printf("Key\tBST Search\tBST Comp.\tLinear Search\tLinear Comp.\n");
+    printf("------------------------------------------------------------\n");
+
+    for (int i = 0; i < searchCount; i++) {
+        int key = searchKeys[i];
+        int bstComp, linComp;
+        int bstFound = bstSearch(root, key, &bstComp);
+        int linFound = linearSearch(keys, n, key, &linComp);
+
+        printf("%d\t%s\t\t%d\t\t%s\t\t%d\n",
+               key,
+               bstFound ? "Found" : "Not Found",
+               bstComp,
+               linFound ? "Found" : "Not Found",
+               linComp);
+    }
+    printf("------------------------------------------------------------\n");
+
+    return 0;
+}
